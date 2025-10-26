@@ -27,3 +27,17 @@ autocmd("BufWinEnter", {
         vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts);
     end,
 })
+vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit!<CR>")
+vim.keymap.set("n", "<leader>gq", ":diffoff!<CR>")
+vim.keymap.set("n", "<leader>gb", ":Git blame<CR>")
+vim.keymap.set("n", "<leader>gl", ":Gclog<CR>")
+vim.keymap.set("n", "<leader>gw", ":Gwrite<CR>")
+vim.keymap.set("n", "<leader>gR", ":Gread<CR>")
+vim.keymap.set("n", "<leader>gT", ":Git difftool -y<CR>")
+vim.keymap.set("n", "<leader>gm", ":Git mergetool<CR>")
+vim.keymap.set("n", "<leader>gB", ":Git blame<CR>")
+vim.keymap.set("n", "<leader>gL", ":Gclog<CR>")
+
+vim.keymap.set("n", "<leader>gu", ":<cmd>diffget //2<CR>")
+vim.keymap.set("n", "<leader>gh", ":<cmd>diffget //3<CR>")
+

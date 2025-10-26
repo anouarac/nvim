@@ -6,6 +6,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
+    use 'sindrets/diffview.nvim'
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
@@ -20,6 +21,15 @@ return require('packer').startup(function(use)
             vim.cmd('colorscheme rose-pine')
         end
 
+    })
+
+    use({
+      "folke/trouble.nvim",
+      config = function()
+        require("trouble").setup {
+          icons = false,
+        }
+      end
     })
 
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -40,7 +50,7 @@ return require('packer').startup(function(use)
 
     use {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
+        branch = 'v3.x',
         requires = {
             -- LSP Support
             {'neovim/nvim-lspconfig'},
@@ -61,6 +71,19 @@ return require('packer').startup(function(use)
         }
     }
     use("eandrju/cellular-automaton.nvim")
+
+    use {
+      'lewis6991/gitsigns.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim'
+      },
+      config = function()
+        require('gitsigns').setup({ current_line_blame = true})
+      end
+    }
+  
+    use 'ZSaberLv0/ZFVimDirDiff'
+    use 'ZSaberLv0/ZFVimJob'
 
 
 end)

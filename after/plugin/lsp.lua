@@ -1,23 +1,20 @@
 local lsp = require("lsp-zero")
 
-lsp.preset("recommended")
-
-lsp.ensure_installed({
-  'rust_analyzer',
-  'eslint',
-  'clangd',
-  'pyre'
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = { 'clangd', 'lemminx', 'lua_ls' },
 })
 
--- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+vim.lsp.config('clangd', {
+  cmd = { "clangd", "--compile-commands-dir=cmake-build-release"},
+  capabilities = capabilities
+})
+
+vim.lsp.config('lua_ls', {
+  settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
+  capabilities = capabilities,
 })
 
 
@@ -33,8 +30,14 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 
-lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+cmp.setup({
+  mapping = cmp_mappings,
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'path' },
+    { name = 'buffer' },
+    { name = 'luasnip' },
+  },
 })
 
 lsp.set_preferences({
@@ -63,7 +66,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-lsp.setup()
+vim.lsp.enable({ 'clangd', 'lua_ls', 'lemminx' })
 
 vim.diagnostic.config({
     virtual_text = true
