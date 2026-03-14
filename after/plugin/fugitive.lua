@@ -38,6 +38,6 @@ vim.keymap.set("n", "<leader>gm", ":Git mergetool<CR>")
 vim.keymap.set("n", "<leader>gB", ":Git blame<CR>")
 vim.keymap.set("n", "<leader>gL", ":Gclog<CR>")
 
-vim.keymap.set("n", "<leader>gu", ":<cmd>diffget //2<CR>")
-vim.keymap.set("n", "<leader>gh", ":<cmd>diffget //3<CR>")
+vim.keymap.set("n", "gu", ":<cmd>diffget //2<CR>")
+vim.keymap.set("n", "gh", ":<cmd>diffget //3<CR>")
 

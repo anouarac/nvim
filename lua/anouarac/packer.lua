@@ -81,9 +81,6 @@ return require('packer').startup(function(use)
         require('gitsigns').setup({ current_line_blame = true})
       end
     }
-  
     use 'ZSaberLv0/ZFVimDirDiff'
     use 'ZSaberLv0/ZFVimJob'
-
-
 end)

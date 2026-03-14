@@ -2,7 +2,7 @@ local lsp = require("lsp-zero")
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'clangd', 'lemminx', 'lua_ls' },
+  ensure_installed = { 'clangd', 'lemminx', 'lua_ls', 'pyright' },
 })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -66,7 +66,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-vim.lsp.enable({ 'clangd', 'lua_ls', 'lemminx' })
+vim.lsp.enable({ 'clangd', 'lua_ls', 'lemminx', 'pyright' })
 
 vim.diagnostic.config({
     virtual_text = true
